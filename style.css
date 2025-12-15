@@ -63,15 +63,27 @@ p {
 
 /* ---------- Lists ---------- */
 ul {
-  list-style-position: inside;
+  list-style: none;      /* kill default bullets */
   padding: 0;
   margin: 24px 0;
 }
 
 li {
   margin-bottom: 10px;
-  color: var(--text-main);
+  position: relative;
+  padding-left: 0;
 }
+
+/* Custom centered bullets */
+li::before {
+  content: "•";
+  display: block;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
 
 /* ---------- Links ---------- */
 a {
@@ -102,5 +114,6 @@ footer {
     font-size: 2.1rem;
   }
 }
+
 
 
