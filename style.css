@@ -62,27 +62,30 @@ p {
 }
 
 /* ---------- Lists ---------- */
+
 ul {
-  list-style: none;      /* kill default bullets */
+  list-style: none;
   padding: 0;
   margin: 24px 0;
 }
 
 li {
-  margin-bottom: 10px;
-  position: relative;
-  padding-left: 0;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 500;
 }
 
-/* Custom centered bullets */
+/* Star before and after */
 li::before {
-  content: "•";
-  display: block;
-  font-size: 1.2rem;
-  line-height: 1;
+  content: "★ ";
   color: var(--accent);
-  margin-bottom: 4px;
 }
+
+li::after {
+  content: " ★";
+  color: var(--accent);
+}
+
 
 
 /* ---------- Links ---------- */
@@ -114,6 +117,7 @@ footer {
     font-size: 2.1rem;
   }
 }
+
 
 
 
