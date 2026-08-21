@@ -1,0 +1,288 @@
+/* Base reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Theme tokens */
+:root {
+  --bg: #fff;
+  --bg-sunk: #fafafa;
+  --text: #111;
+  --text-muted: #666;
+  --border: #e4e4e4;
+  --accent: #111;
+  --accent-text: #fff;
+  --selected: #f0f0f0;
+  --danger: #a32020;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181c;
+    --bg-sunk: #1c1f24;
+    --text: #e8e8e8;
+    --text-muted: #9a9a9a;
+    --border: #2c3037;
+    --accent: #e8e8e8;
+    --accent-text: #16181c;
+    --selected: #262a31;
+    --danger: #e06c6c;
+  }
+}
+
+/* Page foundation */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Layout */
+.app {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background-color: var(--bg-sunk);
+  border-right: 1px solid var(--border);
+}
+
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 16px 12px;
+}
+
+h1 {
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+}
+
+.search {
+  margin: 0 16px 12px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.search:focus-visible,
+.note-body:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+/* Note list */
+.note-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0 8px 8px;
+}
+
+.note-item {
+  padding: 10px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.note-item:hover {
+  background-color: var(--selected);
+}
+
+.note-item.is-selected {
+  background-color: var(--selected);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.note-title {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-meta {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-empty {
+  padding: 8px 18px 18px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.sidebar-bottom {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* Editor */
+.editor {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+.editor-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.status {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-body {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  padding: 24px 20px 40px;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+  border: 0;
+  resize: none;
+}
+
+.editor-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 20px;
+  text-align: center;
+}
+
+.muted {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Hide editor chrome when nothing is selected */
+.app.is-empty .note-body,
+.app.is-empty .editor-bar {
+  display: none;
+}
+
+.app:not(.is-empty) .editor-empty {
+  display: none;
+}
+
+/* Buttons */
+button {
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 6px 12px;
+  color: var(--accent-text);
+  background-color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn-quiet {
+  padding: 5px 10px;
+  color: var(--text-muted);
+  background-color: transparent;
+  border: 1px solid var(--border);
+}
+
+.btn-quiet:hover {
+  color: var(--text);
+}
+
+.btn-danger {
+  padding: 5px 10px;
+  color: var(--danger);
+  background-color: transparent;
+  border: 1px solid var(--border);
+}
+
+.btn-danger:hover {
+  border-color: var(--danger);
+}
+
+/* The back button is mobile-only */
+.back {
+  display: none;
+}
+
+/* Small screens: one pane at a time */
+@media (max-width: 720px) {
+  .app {
+    grid-template-columns: 1fr;
+    border: 0;
+  }
+
+  .sidebar {
+    border-right: 0;
+  }
+
+  .back {
+    display: inline-block;
+  }
+
+  /* Showing the list */
+  .app:not(.is-editing) .editor {
+    display: none;
+  }
+
+  /* Showing one note */
+  .app.is-editing .sidebar {
+    display: none;
+  }
+
+  .app.is-editing.is-empty .editor {
+    display: flex;
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A quiet place to keep your journal.">
+  <title>Journal | Nikhil’s Den</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar: search, entry list, storage actions -->
+    <aside class="sidebar">
+
+      <div class="sidebar-top">
+        <h1>Journal</h1>
+        <button id="new-note" class="btn-primary" type="button">New entry</button>
+      </div>
+
+      <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search entries"
+        autocomplete="off"
+        aria-label="Search entries">
+
+      <ul id="note-list" class="note-list"></ul>
+
+      <p id="list-empty" class="list-empty" hidden></p>
+
+      <div class="sidebar-bottom">
+        <button id="export" class="btn-quiet" type="button">Export</button>
+        <button id="import" class="btn-quiet" type="button">Import</button>
+        <input id="import-file" type="file" accept="application/json,.json" hidden>
+      </div>
+
+    </aside>
+
+    <!-- Editor -->
+    <main class="editor">
+
+      <div class="editor-bar">
+        <button id="back" class="btn-quiet back" type="button">&larr; Journal</button>
+        <span id="status" class="status" aria-live="polite"></span>
+        <button id="delete-note" class="btn-danger" type="button">Delete</button>
+      </div>
+
+      <textarea
+        id="note-body"
+        class="note-body"
+        placeholder="Write today's entry…"
+        spellcheck="true"
+        aria-label="Entry content"></textarea>
+
+      <div id="editor-empty" class="editor-empty">
+        <p>No entry selected.</p>
+        <p class="muted">Pick one from the list, or start a new entry.</p>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
